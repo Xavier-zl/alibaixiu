@@ -21,9 +21,9 @@ $('#userForm').on('submit' ,function() {
 })
 
 // 实现头像图片上传功能
-// 点击input添加change事件
-$('#avatar').on('change', function() {
-    // 创建formData
+//事件委托的形式来上传图片
+$('#modifyBox').on('change','#avatar', function() {
+      // 创建formData
     // this.files[0]
     var formData = new FormData();
     formData.append('avatar', this.files[0])
@@ -42,7 +42,6 @@ $('#avatar').on('change', function() {
         }
     })
 })
-
 //用户列表展示
 $.ajax({
     url:'/users',
@@ -74,11 +73,11 @@ $('#userBox').on('click', '.edit', function() {
 
 })
 //修改用户信息
-$('#modifyBox').on('submitnn', '#userForm', function() {
+$('#modifyBox').on('submit', '#modifyForm', function() {
     // 获取内容格式化成参数
     var formData = $(this).serialize();
     var id = $(this).attr('data-id')
-    console.log(formData)
+    // console.log(formData)
     $.ajax({
         url:'/users/' + id,
         type:'put',
