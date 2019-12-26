@@ -89,3 +89,19 @@ $('#modifyBox').on('submit', '#modifyForm', function() {
     // 阻止表单默认跳转
     return false;
 })
+
+$('#userBox').on('click', '.delete', function() {
+    // 获取用户id
+    confirm('确认要删除用户吗？')
+    if(confirm ) {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url:'/users/' +id ,
+            type:'delete',
+            success: function() {
+                location.reload()
+            }
+        })
+    }
+ 
+})
