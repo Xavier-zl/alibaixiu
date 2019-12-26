@@ -89,7 +89,8 @@
           <table class="table table-striped table-bordered table-hover">
             <thead>
                <tr>
-                <th class="text-center" width="40"><input type="checkbox"></th>
+                <th class="text-center" width="40">
+                  <input type="checkbox" id="selectAll"></th>
                 <th class="text-center" width="80">头像</th>
                 <th>邮箱</th>
                 <th>昵称</th>
@@ -98,6 +99,7 @@
                 <th class="text-center" width="100">操作</th>
               </tr>
             </thead>
+<!-- 模块拼接点 -->
             <tbody id="userBox">
            
             </tbody>
@@ -153,7 +155,7 @@
   <script type="text/html" id="userTpl">
     {{each data}}
     <tr>
-        <td class="text-center"><input type="checkbox"></td>
+        <td class="text-center"><input type="checkbox" class="userStatus"></td>
        
         <td class="text-center">
           {{if $value.avatar }}

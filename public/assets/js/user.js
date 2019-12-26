@@ -89,7 +89,7 @@ $('#modifyBox').on('submit', '#modifyForm', function() {
     // 阻止表单默认跳转
     return false;
 })
-
+// 删除用户
 $('#userBox').on('click', '.delete', function() {
     // 获取用户id
     confirm('确认要删除用户吗？')
@@ -104,4 +104,24 @@ $('#userBox').on('click', '.delete', function() {
         })
     }
  
+})
+// 批量删除用户
+var selectAll = $('#selectAll')
+selectAll.on('change', function() {
+    var status = $(this).prop('checked')
+    // 获取所有用户的状态，并将所有用户的状态改为与全选按钮一致
+    $('#userBox').find('.userStatus').prop('checked', status)
+})
+
+$('#userBox').on('change', '.userStatus', function() {
+    //判断所有用户的数量是否跟选中状态数量的长度一致，如果一致就讲selectAll的状态改为true，
+    //否则就改为false
+    // 所有input用户
+    var inputs = $('#userBox').find('.userStatus');
+    // 判断所有用户数量的长度是否等于选中状态用户的长度
+    if(inputs.length === inputs.filter(':checked').length ) {
+        selectAll.prop('checked',true)
+    } else {
+        selectAll.prop('checked',false)
+    }
 })
