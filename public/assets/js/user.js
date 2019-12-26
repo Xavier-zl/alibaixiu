@@ -107,12 +107,18 @@ $('#userBox').on('click', '.delete', function() {
 })
 // 批量删除用户
 var selectAll = $('#selectAll')
+var deleteMany = $('#deleteMany')
 selectAll.on('change', function() {
     var status = $(this).prop('checked')
     // 获取所有用户的状态，并将所有用户的状态改为与全选按钮一致
     $('#userBox').find('.userStatus').prop('checked', status)
+    // 如果全选按钮为true那么显示删除按钮
+    if(status) {
+        deleteMany.show()
+    } else {
+        deleteMany.hide()
+    }
 })
-
 $('#userBox').on('change', '.userStatus', function() {
     //判断所有用户的数量是否跟选中状态数量的长度一致，如果一致就讲selectAll的状态改为true，
     //否则就改为false
@@ -123,5 +129,11 @@ $('#userBox').on('change', '.userStatus', function() {
         selectAll.prop('checked',true)
     } else {
         selectAll.prop('checked',false)
+    }
+    // 如果用户选中的数量大于1则显示批量删除
+    if(inputs.filter(':checked').length > 1) {
+        deleteMany.show()
+    } else {
+        deleteMany.hide()
     }
 })
