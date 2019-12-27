@@ -24,3 +24,31 @@ $.ajax({
         $('#categoriesBody').html(html)
     }
 })
+//分类数据的修改
+$('#categoriesBody').on('click','.edit', function() {
+    var id = $(this).attr('data-id');
+    // 根据id获取详细信息
+    $.ajax({
+        url:'/categories/' + id ,
+        type:'get',
+        success: function(response) {
+            var html = template('modifyCategoriesTpl', response)
+            $('#categoriesBox').html(html)
+        }
+    })
+})
+//点击修改按钮实现修改功能
+$('#categoriesBox').on('submit','#modifyCategories', function() {
+    var formData  = $(this).serialize();
+    var id = $(this).attr('data-id')
+    $.ajax({
+        url:'/categories/' +id,
+        type:'put',
+        data:formData,
+        success: function() {
+            location.reload()
+        }
+    })
+    // 阻止表单默认提交行为
+    return false;
+})
