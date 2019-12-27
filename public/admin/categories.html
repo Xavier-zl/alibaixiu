@@ -110,7 +110,7 @@
   <script type="text/html" id="categoriesTpl">
     {{each data}}
     <tr>
-      <td class="text-center"><input type="checkbox" class="ipt"></td>
+      <td class="text-center"><input type="checkbox" class="ipt" data-id="{{$value._id}}" ></td>
       <td>{{$value.title}}</td>
       <td class="text-center">
         <a href="javascript:;" class="btn btn-info btn-xs edit" data-id="{{$value._id}}">编辑</a>

@@ -1,3 +1,4 @@
+
 // 获取用户from表单
 $('#addCategories').on('submit', function() {
     // 获取用户输入内容转化为参数字符串
@@ -70,6 +71,7 @@ $('#categoriesBody').on('click', '.delete', function() {
 
 // 批量删除功能
 var deleteMany = $('#deleteMany')
+var deleteAll =$('#deleteAll')
  deleteMany.on('change',  function() {
     // 获取全选按钮状态
     var status = $(this).prop('checked');
@@ -98,4 +100,23 @@ $('#categoriesBody').on('change', '.ipt', function() {
     } else {
         $('#deleteAll').hide()
     }
+})
+// 点击批量删除按钮实现删除功能
+deleteAll.on('click' ,function() {
+    // 声明一个新数组
+    var arrNew = [];
+    // 点击批量删除按钮获取所有选中的用户
+    var categoriesChecked =$('#categoriesBody').find('.ipt').filter(':checked')
+    // console.log(inputs)
+    // 循环inputs并且拿到每个的id
+    categoriesChecked.each( function(index,element) {
+      arrNew.push($(element).attr('data-id'))
+    })
+    $.ajax({
+        url:'/categories/' + arrNew.join('-'),
+        type:'DELETE',
+        success: function() {
+            location.reload()
+        }
+    })
 })
