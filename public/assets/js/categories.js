@@ -52,3 +52,18 @@ $('#categoriesBox').on('submit','#modifyCategories', function() {
     // 阻止表单默认提交行为
     return false;
 })
+
+// 事件委托方式添加点击删除事件
+$('#categoriesBody').on('click', '.delete', function() {
+    if(confirm('确认要删除此分类吗？')) {
+      var id = $(this).attr('data-id')
+      $.ajax({
+          url:'/categories/' +id,
+          type:'DELETE',
+          success: function() {
+              location.reload()
+          }
+      })
+    }
+
+})
