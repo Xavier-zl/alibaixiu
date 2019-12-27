@@ -112,6 +112,7 @@ deleteAll.on('click' ,function() {
     categoriesChecked.each( function(index,element) {
       arrNew.push($(element).attr('data-id'))
     })
+   if(confirm('确认要删除以下分类吗？')) {
     $.ajax({
         url:'/categories/' + arrNew.join('-'),
         type:'DELETE',
@@ -119,4 +120,5 @@ deleteAll.on('click' ,function() {
             location.reload()
         }
     })
+   }
 })
