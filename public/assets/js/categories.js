@@ -67,3 +67,35 @@ $('#categoriesBody').on('click', '.delete', function() {
     }
 
 })
+
+// 批量删除功能
+var deleteMany = $('#deleteMany')
+ deleteMany.on('change',  function() {
+    // 获取全选按钮状态
+    var status = $(this).prop('checked');
+    // 获取所有input按钮,并且将状态与全选按钮保持一致
+    $('#categoriesBody').find('.ipt').prop('checked',status);
+    // 如果全选按钮为true则显示批量删除
+    if(status) {
+        $('#deleteAll').show()
+    }else{
+        $('#deleteAll').hide()
+    }
+})
+
+// 判断选中的input是否等于所有用户的数量
+$('#categoriesBody').on('change', '.ipt', function() {
+    var inputs =$('#categoriesBody').find('.ipt')
+    if(inputs.length == inputs.filter(':checked').length) {
+        deleteMany.prop('checked',true)
+    } else {
+        deleteMany.prop('checked',false)
+
+    } 
+    if (inputs.filter(':checked').length> 1) {
+        $('#deleteAll').show()
+
+    } else {
+        $('#deleteAll').hide()
+    }
+})
