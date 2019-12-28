@@ -34,7 +34,6 @@ $.ajax({
     processData:false,
     contentType:false,
     success: function(response) {
-        // console.log(response)
         //实现头像预览功能，给页面添加元素即可
         $('#preview').attr('src', response[0].avatar)
         //设置一个隐藏域。这里的路径是需要发送给服务器的
@@ -47,7 +46,7 @@ $.ajax({
 url:'/users',
 type:'get',
 success: function(response) {
-    // console.log(response)
+    console.log(response)
     var html = template('userTpl',{data:response})
     $('#userBox').html(html)
     
