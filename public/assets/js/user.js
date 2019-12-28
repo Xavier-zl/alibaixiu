@@ -64,9 +64,9 @@ $.ajax({
     type:'PUT',
     url:'/users/' + id,
     success: function(response) {
-        // console.log(response)
+        console.log(response)
         var html = template('modifyTpl', response)
-        // console.log(html)
+        console.log(html)
         $('#modifyBox').html(html)
     }
 })
@@ -83,6 +83,7 @@ $.ajax({
     type:'put',
     data:formData,
     success: function(response) {
+        // console.log(response)
         location.reload()
     }
 })

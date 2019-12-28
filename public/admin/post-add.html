@@ -28,15 +28,15 @@
       <!-- <div class="alert alert-danger">
         <strong>错误！</strong>发生XXX错误
       </div> -->
-      <form class="row">
+      <form class="row" id="formRow">
         <div class="col-md-9">
           <div class="form-group">
             <label for="title">标题</label>
-            <input id="title" class="form-control input-lg" name="title" type="text" placeholder="文章标题" name="title">
+            <input id="title" class="form-control input-lg" type="text" placeholder="文章标题" name="title">
           </div>
           <div class="form-group">
-            <label for="content">标题</label>
-            <textarea id="content" class="form-control input-lg" name="content" cols="30" rows="10" placeholder="内容" name="content"></textarea>
+            <label for="content">内容</label>
+            <textarea id="content" class="form-control input-lg" cols="30" rows="10" placeholder="内容" name="content"></textarea>
           </div>
         </div>
         <div class="col-md-3">
@@ -56,13 +56,13 @@
           </div>
           <div class="form-group">
             <label for="created">发布时间</label>
-            <input id="created" class="form-control" name="created" type="datetime-local">
+            <input id="created" class="form-control" name="createAt" type="datetime-local">
           </div>
           <div class="form-group">
             <label for="status">状态</label>
-            <select id="status" class="form-control" name="status">
-              <option value="drafted" name="state">草稿</option>
-              <option value="published">已发布</option>
+            <select id="status" class="form-control" name="state">
+              <option  value="0">草稿</option>
+              <option  value="1">已发布</option>
             </select>
           </div>
           <div class="form-group">
@@ -113,12 +113,12 @@
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script src="../assets/vendors/art-template/template-web.js"></script>
-  <script src="../assets/js/post-add.js"></script>
   <script type="text/html" id="categorTpl">
     {{each data}}
     <option value="{{$value._id}}" name="category">{{$value.title}}</option>
     {{/each}}
   </script>
+<script src="../assets/js/post-add.js"></script>
   <script>NProgress.done()</script>
 </body>
 </html>
