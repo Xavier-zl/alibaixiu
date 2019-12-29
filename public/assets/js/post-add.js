@@ -49,3 +49,57 @@ $('#formRow').on('submit', function() {
     return false;
 })
 })
+
+// 点击编辑修改文章
+
+// 从浏览器地址栏获取参数
+ var id = articlesId('id')
+if ( id != -1 ) {
+    // 说明是在进行修改操作
+    $.ajax({
+        url:'/posts/' + id,
+        success: function(res) {
+            $.ajax({
+                url:'/categories',
+                type:'get',
+                success: function(response) {
+                    // console.log(response)
+                 res.categories = response
+                    console.log(res)
+                    var html = template('updataTpl',res)
+                    console.log(html)
+                    $('#parentdBox').html(html)
+                  
+            
+                }
+            })
+          
+        }
+    })
+}
+function articlesId  (name) {
+    var   getArticlesId =location.search.substring(1).split('&')
+    console.log(getArticlesId)
+    for ( var i = 0; i < getArticlesId.length ; i++) {
+        var temp =  getArticlesId[i].split('=')
+        if ( temp[0] == name ) {
+            return temp[1]
+        }
+    }
+    return -1
+} 
+
+// 当文章点击修改按钮时
+$('#parentdBox').on('submit','#updateRow' , function() {
+    var formData = $(this).serialize();
+    var id = $(this).data('id')
+    $.ajax({
+        url:'/posts/' + id,
+        type:'put',
+        data: formData,
+        success: function() {
+            location.href = '/admin/posts.html'
+        }
+
+    })
+})

@@ -51,3 +51,4 @@ $("#categoryForm").on('submit', function() {
     return false;
 
 })
+
