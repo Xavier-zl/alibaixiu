@@ -1,4 +1,5 @@
-// 查询分类列表
+$(function() {
+    // 查询分类列表
 $.ajax({
     url:'/categories',
     type:'get',
@@ -46,4 +47,5 @@ $('#formRow').on('submit', function() {
     })
     // 阻止表单默认事件
     return false;
+})
 })
