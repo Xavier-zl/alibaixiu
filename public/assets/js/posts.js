@@ -51,4 +51,17 @@ $("#categoryForm").on('submit', function() {
     return false;
 
 })
-
+// 点击删除按钮实现文章删除
+$('#recordsTbody').on('click', '.delete' ,function() {
+    if(confirm('确认要删除此文章吗？')) {
+      var id =   $(this).attr('data-id')
+    //   alert(id)
+        $.ajax({
+            url:'/posts/' + id,
+            type:'delete',
+            success: function() {
+                location.reload()
+            }
+        })
+    }
+})

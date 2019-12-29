@@ -167,6 +167,20 @@
       </form>
   </script>
 <script src="../assets/js/post-add.js"></script>
+<script>
+var myDate = new Date(), Y = myDate.getFullYear(), M = myDate.getMonth() + 1, D = myDate.getDate();
+	//处理月是一位的情况
+	if((M + '').length == 1){
+		M = '0' + (M + '');
+	}
+	//处理日是一位的情况
+	if((D + '').length == 1){
+		D = '0' + (D + '')
+	}
+	var curDay = Y + '-' + M + '-' + D;
+	console.log(curDay)
+	$('#created').val(curDay + 'T00:00')
+</script>
   <script>NProgress.done()</script>
 </body>
 </html>
